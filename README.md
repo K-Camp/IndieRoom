@@ -1,24 +1,34 @@
-# README
+# インディールーム
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+### サイトテーマ
 
-Things you may want to cover:
+自分の好みに合ったインディーゲーム（個人や小規模で作られたゲーム）を探せるレビューサイト
+​
+### テーマを選んだ理由
 
-* Ruby version
+私はプライベートでよくゲームをしているのですが、有名なゲームと同じくらい面白いインディゲームを見つけることが度々ありました。
+ですが、そういったインディゲームを探す方法がわかりませんでした。
+自分のようにインディゲームを探す方法がわからない人たちのためのサイトがあれば便利になると考えました。
+さらに、そのゲームがどういったゲームなのかというレビューもあればさらに便利になると考えたため、このテーマにしました。
 
-* System dependencies
+### ターゲットユーザ
 
-* Configuration
+- 有名なゲームだけではなくインディーゲームもやってみたいなと考えている方
+- 自分のプレイして面白かったゲームを他人に共有したいなと考えている方
+​
+### 主な利用シーン
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- 有名ではないゲームでもいいから面白いゲームをやってみたいと思う方
+- インディーゲームに興味はあるが探し方がわからない方
+​
+## 設計書
+後ほど作成予定
+​
+## 開発環境
+- OS：Windows
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Visual Studio Code（VSCode）
+​
