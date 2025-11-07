@@ -1,2 +1,26 @@
-<h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
+<div class="jumbotron text-center bg-dark text-light py-5">
+  <h1 class="display-4 fw-bold">IndieRoom</h1>
+  <p class="lead">世界中のインディーゲームを、みんなで広めていこう！</p>
+  <hr class="my-4 border-light">
+  <%= link_to "今すぐレビューを見る", root_path, class: "btn btn-primary btn-lg" %>
+</div>
+
+<div class="container mt-5">
+  <h2 class="text-center mb-4">注目のインディーゲーム</h2>
+  <div class="row">
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm">
+        <%= image_tag "no_image.jpg", class: "card-img-top" %>
+        <div class="card-body">
+          <h5 class="card-title">カードタイトル</h5>
+          <p class="card-text text-muted">カードテキスト</p>
+          <%= link_to "レビューを見る", root_path, class: "btn btn-outline-primary btn-sm" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="text-center mt-5">
+  <%= link_to "もっと見る", root_path, class: "btn btn-outline-light bg-dark" %>
+</div>
