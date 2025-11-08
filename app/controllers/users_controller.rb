@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
+    @posts = @user.posts.includes(:game).order(created_at: :desc)
   end
 
   def edit

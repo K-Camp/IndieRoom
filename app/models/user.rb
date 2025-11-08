@@ -5,8 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   has_one_attached :profile_image
-  has_many :posts
-  has_many :comments
+  has_many :posts,    dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   # ログイン前にis_activeをチェック
   def active_for_authentication?
