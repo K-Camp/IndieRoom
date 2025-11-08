@@ -3,8 +3,9 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  # サインアップ時だけ username を許可
+  # サインアップ時、更新時のみ name を許可
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name])
   end
 end

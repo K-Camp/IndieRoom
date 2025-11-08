@@ -1,9 +1,21 @@
 class PostsController < ApplicationController
 
+  def index
+    @posts = Post.all
+  end
+
   def new
+    @post = Post.new
+
   end
 
   def create
+    @post = Post.new(post_params)
+    if @post.create
+      redirect_to post_path
+    else
+      render :new
+    end
   end
 
   def edit
@@ -12,12 +24,13 @@ class PostsController < ApplicationController
   def update
   end
 
-  def delete
+  def destroy
   end
 
   private
-
+  
+  # ストロングパラメータ
   def post_params
-    params.require(:post).permit(:name, :email, :introduction, :role, :is_active)
+    params.require(:post).permit(:score, :content)
   end
 end

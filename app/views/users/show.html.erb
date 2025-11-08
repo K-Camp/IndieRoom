@@ -12,7 +12,7 @@
     <% if current_user.introduction.present? %>
       <div class="mb-3">
         <strong>自己紹介</strong>
-        <p><%= simple_format(current_user.introduction) %></p>
+        <p><%= current_user.introduction %></p>
       </div>
     <% end %>
 

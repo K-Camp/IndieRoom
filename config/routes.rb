@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   resources :games
   resources :reviews
   resources :posts
-  resources :users
+  resource :user, only: [:show, :edit, :update]do
+    patch :withdraw
+  end
   root         to: "homes#top"
   get "about", to: "homes#about"
   get 'user/my_page', to: 'users#show', as: 'my_page'

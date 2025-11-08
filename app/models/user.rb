@@ -7,4 +7,9 @@ class User < ApplicationRecord
   has_one_attached :profile_image
   has_many :posts
   has_many :comments
+
+  # ログイン前にis_activeをチェック
+  def active_for_authentication?
+    super && is_active
+  end
 end

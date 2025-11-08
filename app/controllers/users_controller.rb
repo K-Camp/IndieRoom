@@ -19,9 +19,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def withdraw
+    current_user.update(is_active: false)
+    sign_out current_user
+    flash[:notice] = "退会が完了しました。ご利用ありがとうございました。"
+    redirect_to root_path
+  end
+
   private
 
+  # ストロングパラメータ
   def user_params
-    params.require(:user).permit(:score, :title, :body)
+    params.require(:user).permit(:user_name, :introduction, :email,  :role, :is_active)
   end
 end

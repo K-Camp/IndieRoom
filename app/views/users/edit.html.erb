@@ -40,9 +40,7 @@
 
           <!-- 退会ボタン -->
           <div class="text-center mt-4">
-            <%= button_to "退会する",
-                  
-                  class: "btn btn-outline-danger w-100" %>
+            <%= button_to "退会する", withdraw_user_path, method: :patch, data: { confirm: "本当に退会しますか？" } %>
           </div>
         </div>
       </div>
