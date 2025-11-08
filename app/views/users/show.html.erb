@@ -1,0 +1,25 @@
+<div class="container mt-5 mb-5">
+  <div class="card shadow-sm p-4">
+    <h2 class="mb-4"><i class="fas fa-user-circle mr-2"></i> マイページ</h2>
+
+    <div class="mb-3">
+      <strong>ユーザー名：</strong> <%= current_user.name %>
+    </div>
+    <div class="mb-3">
+      <strong>メールアドレス：</strong> <%= current_user.email %>
+    </div>
+
+    <% if current_user.introduction.present? %>
+      <div class="mb-3">
+        <strong>自己紹介</strong>
+        <p><%= simple_format(current_user.introduction) %></p>
+      </div>
+    <% end %>
+
+    <div class="col-3">
+      <%= link_to edit_user_path(current_user), class: "btn btn-outline-primary" do %>
+        <i class="fas fa-user-edit mr-2"></i> 編集する
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
-  get 'homes/top'
-  devise_for :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
+  devise_for :users
+  resources :games
+  resources :reviews
+  resources :posts
+  resources :users
   root         to: "homes#top"
   get "about", to: "homes#about"
+  get 'user/my_page', to: 'users#show', as: 'my_page'
 end
