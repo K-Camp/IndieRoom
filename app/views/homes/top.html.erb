@@ -6,17 +6,29 @@
 </div>
 
 <div class="container mt-5">
-  <h2 class="text-center mb-4">注目のインディーゲーム</h2>
-  <div class="row">
-    <div class="col-md-4 mb-4">
-      <div class="card h-100 shadow-sm">
-        <%= image_tag "no_image.jpg", class: "card-img-top" %>
-        <div class="card-body">
-          <h5 class="card-title">カードタイトル</h5>
-          <p class="card-text text-muted">カードテキスト</p>
-          <%= link_to "レビューを見る", root_path, class: "btn btn-outline-primary btn-sm" %>
+  <h2 class="text-center mb-4">最近投稿されたゲーム</h2>
+
+  <div class="row justify-content-center">
+    <% @latest_games.each do |post| %>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+
+          <% if post.game.game_image.attached? %>
+            <%= image_tag post.game.game_image, size: "400x400", class: "card-img-top", alt: post.game.game_name %>
+          <% else %>
+            <%= image_tag "no_image.png", class: "card-img-top", alt: "No image" %>
+          <% end %>
+
+          <div class="card-body text-center">
+            <h5 class="card-title"><%= post.game.game_name %></h5>
+            <%= link_to "詳細を見る", post_path(post), class: "btn btn-primary btn-sm mt-2" %>
+          </div>
         </div>
       </div>
-    </div>
+    <% end %>
   </div>
+
+  <% if @latest_games.empty? %>
+    <p class="text-center text-muted mt-4">まだ投稿されたゲームがありません。</p>
+  <% end %>
 </div>

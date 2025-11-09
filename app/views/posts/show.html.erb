@@ -1,2 +1,45 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<div class="container mt-5 mb-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <h3><%= @post.post_title %></h3>
+        </div>
+
+        <div class="card-body">
+          <p><strong>投稿者:</strong> <%= @post.user.user_name %></p>
+          <p><strong>作成日:</strong> <%= @post.created_at.strftime("%Y/%m/%d %H:%M") %></p>
+          <hr>
+          <p><%= simple_format(@post.content) %></p>
+
+          <% if @post.game.game_image.attached? %>
+            <div class="mt-3 text-center">
+              <%= image_tag @post.game.game_image, size: "300x300", class: "img-fluid rounded", style: "max-height: 400px;" %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="card-footer text-end">
+          <!-- ログインユーザが投稿主の場合 -->
+          <% if user_signed_in? && current_user == @post.user %>
+            <%= link_to edit_post_path(current_user), class: "btn btn-outline-primary mr-2" do %>
+              <i class="fas fa-edit mr-1"></i> 編集
+            <% end %>
+            <%= link_to post_path(@post), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-outline-danger mr-2" do %>
+              <i class="fas fa-trash-alt mr-1"></i> 削除
+            <% end %>
+            <%= link_to '戻る', user_path(current_user), class: "btn btn-secondary" %>
+
+          <!-- ログインユーザが投稿主ではない場合 -->
+          <% elsif user_signed_in? %>
+            <%= link_to '戻る', user_path(current_user), class: "btn btn-secondary" %>
+
+          <!-- ログインユーザが存在しない場合 -->
+          <% else %>
+            <%= link_to '戻る', root_path, class: "btn btn-secondary" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

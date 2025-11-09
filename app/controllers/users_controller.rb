@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, only: [:show, :edit, :update, :withdraw]
 
   def show
     @user = current_user
+    # 自分の投稿したレビューを取得
     @posts = @user.posts.includes(:game).order(created_at: :desc)
   end
 
@@ -31,6 +33,6 @@ class UsersController < ApplicationController
 
   # ストロングパラメータ
   def user_params
-    params.require(:user).permit(:user_name, :introduction, :email,  :role, :is_active)
+    params.require(:user).permit(:user_name, :introduction, :email,  :role, :is_active, :profile_image)
   end
 end
