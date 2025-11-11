@@ -30,7 +30,7 @@
     </div>
   </div>
 
-  <h3 class="mt-5 mb-3">投稿レビュー一覧</h3>
+  <h3 class="mt-5 mb-3">自分の投稿一覧</h3>
 
   <% if @posts.any? %>
     <div class="list-group">
@@ -69,5 +69,11 @@
   <% else %>
     <p>まだレビューはありません。</p>
   <% end %>
+
+  <div class="text-center mt-4">
+  <%= link_to posts_path, class: "btn btn-lg btn-outline-primary" do %>
+    <i class="fas fa-list"></i> 投稿一覧を見る
+  <% end %>
+</div>
 
 </div>

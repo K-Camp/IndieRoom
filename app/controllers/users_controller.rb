@@ -14,10 +14,8 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update(user_params)
-      flash[:notice] = "プロフィールを更新しました。"
       redirect_to my_page_path
     else
-      flash.now[:alert] = "更新に失敗しました。"
       render :edit
     end
   end
@@ -25,7 +23,6 @@ class UsersController < ApplicationController
   def withdraw
     current_user.update(is_active: false)
     sign_out current_user
-    flash[:notice] = "退会が完了しました。ご利用ありがとうございました。"
     redirect_to root_path
   end
 

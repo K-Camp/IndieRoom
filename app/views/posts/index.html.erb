@@ -1,0 +1,47 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">投稿一覧</h2>
+
+  <% if @posts.any? %>
+    <div class="row">
+      <% @posts.each do |post| %>
+        <div class="col-md-6 mb-4">
+          <div class="card shadow-sm h-100">
+            <div class="card-body">
+              <!-- ゲーム情報 -->
+              <h5 class="card-title">
+                <strong><%= post.game&.game_name || "不明なゲーム" %></strong>
+              </h5>
+
+              <!-- 投稿タイトル -->
+              <p class="card-text mb-1"><strong>タイトル：</strong> <%= post.post_title %></p>
+
+              <!-- 評価（★マーク） -->
+              <p class="card-text mb-1">
+                <strong>評価：</strong>
+                <%= "★" * post.score + "☆" * (5 - post.score) %>
+              </p>
+
+              <!-- 投稿者・投稿日 -->
+              <p class="text-muted mb-3">
+                投稿者：<%= post.user.user_name %> |
+                投稿日：<%= post.created_at.strftime("%Y/%m/%d %H:%M") %>
+              </p>
+
+              <!-- 詳細ボタン -->
+              <div class="text-right">
+                <%= link_to post_path(post), class: "btn btn-primary btn-sm" do %>
+                  <i class="fas fa-info-circle"></i> 詳細を見る
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <!-- 投稿が存在しない場合 -->
+    <div class="alert alert-info text-center">
+      まだ投稿がありません。
+    </div>
+  <% end %>
+</div>

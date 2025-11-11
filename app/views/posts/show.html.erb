@@ -22,21 +22,24 @@
         <div class="card-footer text-end">
           <!-- ログインユーザが投稿主の場合 -->
           <% if user_signed_in? && current_user == @post.user %>
-            <%= link_to edit_post_path(current_user), class: "btn btn-outline-primary mr-2" do %>
+            <%= link_to edit_post_path(@post), class: "btn btn-outline-primary mr-2" do %>
               <i class="fas fa-edit mr-1"></i> 編集
             <% end %>
+
             <%= link_to post_path(@post), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-outline-danger mr-2" do %>
               <i class="fas fa-trash-alt mr-1"></i> 削除
             <% end %>
-            <%= link_to '戻る', user_path(current_user), class: "btn btn-secondary" %>
+
+            <%= link_to "戻る", request.referer || root_path, class: "btn btn-secondary" %>
 
           <!-- ログインユーザが投稿主ではない場合 -->
           <% elsif user_signed_in? %>
-            <%= link_to '戻る', user_path(current_user), class: "btn btn-secondary" %>
+            <!-- request.refererは直前に開いていたページ戻る、直前に何も開いていない場合はtopページに戻る -->
+            <%= link_to "戻る", request.referer || root_path, class: "btn btn-secondary" %>
 
-          <!-- ログインユーザが存在しない場合 -->
+          <!-- ログインしていない場合 -->
           <% else %>
-            <%= link_to '戻る', root_path, class: "btn btn-secondary" %>
+            <%= link_to "戻る", request.referer || root_path, class: "btn btn-secondary" %>
           <% end %>
         </div>
       </div>
