@@ -8,7 +8,6 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-    # 投稿する際に選択するゲームの取得
     @games = Game.all
   end
 
@@ -16,8 +15,10 @@ class PostsController < ApplicationController
     @post = current_user.posts.new(post_params)
     @games = Game.all
     if @post.save
-      redirect_to my_page_path
+      flash[:notice] = "レビューを投稿しました。"
+      redirect_to user_path(current_user)
     else
+      flash.now[:alert] = "投稿に失敗しました。入力内容を確認してください。"
       render :new
     end
   end
@@ -31,13 +32,21 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      redirect_to my_page_path
+      flash[:notice] = "レビューを更新しました。"
+      redirect_to user_path(current_user)
     else
+      flash.now[:alert] = "更新に失敗しました。入力内容を確認してください。"
       render :edit
     end
   end
 
   def destroy
+    if @post.destroy
+      flash[:notice] = "レビューを削除しました。"
+    else
+      flash[:alert] = "削除に失敗しました。"
+    end
+    redirect_to user_path(current_user)
   end
 
   private
@@ -45,8 +54,7 @@ class PostsController < ApplicationController
   def set_post
     @post = current_user.posts.find(params[:id])
   end
-  
-  # ストロングパラメータ
+
   def post_params
     params.require(:post).permit(:game_id, :score, :post_title, :content)
   end

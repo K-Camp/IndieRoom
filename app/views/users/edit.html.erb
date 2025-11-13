@@ -33,15 +33,11 @@
               <% end %>
             </div>
 
-            <div class="text-center mt-4">
-              <%= f.submit "更新する", class: "btn btn-success w-100" %>
+            <div class="d-flex justify-content-center mt-4">
+              <%= f.submit "更新する", class: "btn btn-success mr-3" %>
+              <%= button_to "退会する", withdraw_user_path, method: :patch, data: { confirm: "本当に退会しますか？" }, class: "btn btn-danger ml-3" %>
             </div>
           <% end %>
-
-          <!-- 退会ボタン -->
-          <div class="text-center mt-4">
-            <%= button_to "退会する", withdraw_user_path, method: :patch, data: { confirm: "本当に退会しますか？" } %>
-          </div>
         </div>
       </div>
     </div>

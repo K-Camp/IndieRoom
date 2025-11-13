@@ -20,8 +20,14 @@
           </li>
 
           <li class="nav-item">
-            <%= link_to my_page_path(current_user), class: "nav-link d-flex align-items-center" do %>
+            <%= link_to user_path(current_user), class: "nav-link d-flex align-items-center" do %>
               <i class="fas fa-user mr-1"></i> マイページ
+            <% end %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to posts_path, class: "nav-link d-flex align-items-center" do %>
+              <i class="fas fa-list mr-1"></i> 投稿一覧
             <% end %>
           </li>
 

@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   # サインイン・サインアップ後のリダイレクト先
   def after_sign_in_path_for(resource)
-    my_page_path
+    user_path(current_user)
   end
 
   # ログアウト後のリダイレクト先
