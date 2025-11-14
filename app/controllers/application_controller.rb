@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
   # ログアウト後のリダイレクト先
   def after_sign_out_path_for(resource_or_scope)
-    root_path
+    about_path
   end
 
   # サインアップ時、更新時のみ user_name を許可
