@@ -4,9 +4,6 @@
       <h2 class="text-center mb-4"><i class="fas fa-sign-in-alt mr-2"></i>サインイン</h2>
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <% if flash[:alert] %>
-          <div class="alert alert-danger"><%= flash[:alert] %></div>
-        <% end %>
 
         <div class="form-group mb-3">
           <%= f.label :email, "メールアドレス", class: "form-label" %>

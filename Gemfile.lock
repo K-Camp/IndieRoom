@@ -92,6 +92,7 @@ GEM
     devise-i18n (1.15.0)
       devise (>= 4.9.0)
       rails-i18n
+    devise-i18n-views (0.3.7)
     dotenv (3.1.8)
     dotenv-rails (3.1.8)
       dotenv (= 3.1.8)
@@ -261,7 +262,6 @@ GEM
 
 PLATFORMS
   arm64-darwin
-  ruby
   x86_64-darwin
   x86_64-linux
 
@@ -271,6 +271,7 @@ DEPENDENCIES
   capybara (>= 3.26)
   devise
   devise-i18n
+  devise-i18n-views
   dotenv-rails
   jbuilder (~> 2.7)
   listen (~> 3.3)

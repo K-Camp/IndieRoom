@@ -58,6 +58,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # 追加gem
 gem 'devise'
 gem 'devise-i18n'
+gem 'devise-i18n-views'
 
 # デプロイ用設定
 gem 'dotenv-rails'

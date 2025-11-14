@@ -21,6 +21,5 @@ module IndieRoom
 
     # フラッシュメッセージを日本語にするための設定
     config.i18n.default_locale = :ja
-    config.i18n.available_locales = [:en, :ja]
   end
 end
