@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
   before_action :authenticate_user!, only: [:show, :edit, :update, :withdraw]
 
   def show
@@ -34,6 +35,15 @@ class UsersController < ApplicationController
   end
 
   private
+
+  # ログインユーザかどうか判定するメソッド
+  def ensure_correct_user
+    user = User.find(params[:id])
+    unless user == current_user
+      flash[:alert] = "アクセス権限がありません"
+      redirect_to user_path(current_user)
+    end
+  end
 
   # ストロングパラメータ
   def user_params

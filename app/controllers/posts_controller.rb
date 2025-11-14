@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :edit]
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :show, :edit]
   before_action :set_post, only: [:edit, :update, :destroy]
 
   def index
@@ -16,7 +17,7 @@ class PostsController < ApplicationController
     @games = Game.all
     if @post.save
       flash[:notice] = "レビューを投稿しました。"
-      redirect_to user_path(current_user)
+      redirect_to post_path(@post)
     else
       flash.now[:alert] = "投稿に失敗しました。入力内容を確認してください。"
       render :new
@@ -33,7 +34,7 @@ class PostsController < ApplicationController
   def update
     if @post.update(post_params)
       flash[:notice] = "レビューを更新しました。"
-      redirect_to user_path(current_user)
+      redirect_to post_path(@post)
     else
       flash.now[:alert] = "更新に失敗しました。入力内容を確認してください。"
       render :edit
@@ -51,6 +52,16 @@ class PostsController < ApplicationController
 
   private
 
+  # ログインユーザかどうか判定するメソッド
+  def ensure_correct_user
+    user = User.find(params[:id])
+    unless user == current_user
+      flash[:alert] = "アクセス権限がありません"
+      redirect_to posts_path
+    end
+  end
+
+  # ログインユーザの投稿を取得
   def set_post
     @post = current_user.posts.find(params[:id])
   end

@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :posts,    dependent: :destroy
   has_many :comments, dependent: :destroy
 
+  validates :user_name, presence:true
+
   # ログイン前にis_activeをチェック
   def active_for_authentication?
     super && is_active
