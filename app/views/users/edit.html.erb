@@ -8,21 +8,25 @@
 
         <div class="card-body">
           <%= form_with model: @user, local: true, method: :patch do |f| %>
+            <!-- ユーザー名 -->
             <div class="form-group">
               <%= f.label :user_name, "ユーザー名" %>
               <%= f.text_field :user_name, class: "form-control" %>
             </div>
 
+            <!-- メールアドレス -->
             <div class="form-group mt-3">
               <%= f.label :email, "メールアドレス" %>
               <%= f.email_field :email, class: "form-control" %>
             </div>
 
+            <!-- 自己紹介 -->
             <div class="form-group mt-3">
               <%= f.label :introduction, "自己紹介" %>
               <%= f.text_area :introduction, rows: 3, class: "form-control" %>
             </div>
 
+            <!-- プロフィール画像 -->
             <div class="form-group mt-3">
               <%= f.label :profile_image, "プロフィール画像" %>
               <%= f.file_field :profile_image, class: "form-control-file" %>
@@ -33,6 +37,7 @@
               <% end %>
             </div>
 
+            <!-- ボタン -->
             <div class="d-flex justify-content-center mt-4">
               <%= f.submit "更新する", class: "btn btn-success mr-3" %>
               <%= button_to "退会する", withdraw_user_path, method: :patch, data: { confirm: "本当に退会しますか？" }, class: "btn btn-danger ml-3" %>

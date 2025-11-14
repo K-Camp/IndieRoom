@@ -9,16 +9,19 @@
   <h2 class="text-center mb-4">最近投稿されたゲーム</h2>
 
   <div class="row justify-content-center">
+    <!-- latest_gamesは最近投稿されたものを３つ表示する -->
     <% @latest_games.each do |post| %>
       <div class="col-md-4 mb-4">
         <div class="card h-100 shadow-sm">
 
+          <!-- 投稿されたゲームの画像 -->
           <% if post.game.game_image.attached? %>
             <%= image_tag post.game.game_image, size: "400x400", class: "card-img-top", alt: post.game.game_name %>
           <% else %>
             <%= image_tag "no_image.png", class: "card-img-top", alt: "No image" %>
           <% end %>
 
+          <!-- ボタン -->
           <div class="card-body text-center">
             <h5 class="card-title"><%= post.game.game_name %></h5>
             <%= link_to "詳細を見る", post_path(post), class: "btn btn-primary mt-2" %>

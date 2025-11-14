@@ -2,27 +2,29 @@
   <div class="card shadow-sm p-4">
     <h2 class="mb-4"><i class="fas fa-user-circle mr-2"></i> マイページ</h2>
 
+    <!-- ユーザプロフィール -->
     <div class="mb-3">
-      <% if current_user.profile_image.attached? %>
-        <%= image_tag current_user.profile_image, size: "200x200", class: "img-thumbnail rounded-circle" %>
+      <% if @user.profile_image.attached? %>
+        <%= image_tag @user.profile_image, size: "200x200", class: "img-thumbnail rounded-circle" %>
       <% else %>
         <%= image_tag "no_image.jpg", size: "200x200", class: "img-thumbnail rounded-circle" %>
       <% end %>
     </div>
     <div class="mb-3">
-      <strong>ユーザー名：</strong> <%= current_user.user_name %>
+      <strong>ユーザー名：</strong> <%= @user.user_name %>
     </div>
     <div class="mb-3">
-      <strong>メールアドレス：</strong> <%= current_user.email %>
+      <strong>メールアドレス：</strong> <%= @user.email %>
     </div>
 
-    <% if current_user.introduction.present? %>
+    <% if @user.introduction.present? %>
       <div class="mb-3">
         <strong>自己紹介</strong>
-        <p><%= current_user.introduction %></p>
+        <p><%= @user.introduction %></p>
       </div>
     <% end %>
 
+    <!-- ログインユーザのマイページかどうか -->
     <% if @user == current_user %>
       <div class="col-3">
         <%= link_to edit_user_path, class: "btn btn-outline-primary" do %>
@@ -30,16 +32,15 @@
         <% end %>
       </div>
     <% end %>
-
   </div>
 
   <h3 class="mt-5 mb-3">自分の投稿一覧</h3>
-
   <% if @posts.any? %>
     <div class="list-group">
       <% @posts.each do |post| %>
         <div class="list-group-item mb-3 p-3 shadow-sm">
           <div class="row align-items-center">
+
             <!-- 画像 -->
             <div class="col-md-4 text-center">
               <% if post.game.game_image.attached? %>
@@ -51,16 +52,16 @@
 
             <div class="col-md-8 mb-4">
               <div class="card shadow-sm h-100">
+                <!-- ゲーム情報 -->
                 <div class="card-body">
-                  <!-- ゲーム情報 -->
                   <h5 class="card-title"><strong>ゲーム：</strong> <%= post.game.game_name %></h5>
                   <p><strong>評価：</strong> <%= "★" * post.score %></p>
                   <p><strong>タイトル：</strong> <%= post.post_title %></p>
                   <small class="text-muted">投稿日：<%= post.created_at.strftime("%Y/%m/%d %H:%M") %></small>
                 </div>
 
+                <!-- 詳細ボタン -->
                 <div class="col-md-2 mb-4">
-                  <!-- 詳細ボタン -->
                   <%= link_to '詳細', post_path(post), class: "btn btn-primary" %>
                 </div>
               </div>
