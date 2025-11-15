@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+  before_action :ensure_correct_user, only: [:edit]
   before_action :authenticate_user!, only: [:show, :edit, :update, :withdraw]
 
   def show
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
     if current_user.update(is_active: false)
       sign_out current_user
       flash[:notice] = "退会処理が完了しました。ありがとうございました。"
-      redirect_to root_path
+      redirect_to new_user_registration_path
     else
       flash[:alert] = "退会処理に失敗しました。"
       redirect_to edit_user_path
