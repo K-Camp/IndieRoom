@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class Public::UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:edit]
   before_action :authenticate_user!, only: [:show, :edit, :update, :withdraw]
 
@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     @user = current_user
     if @user.update(user_params)
       flash[:notice] = "プロフィールを更新しました。"
-      redirect_to user_path(current_user)
+      redirect_to public_user_path(current_user)
     else
       flash.now[:alert] = "プロフィールの更新に失敗しました。入力内容を確認してください。"
       render :edit
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     unless user == current_user
       flash[:alert] = "アクセス権限がありません"
-      redirect_to user_path(current_user)
+      redirect_to public_user_path(current_user)
     end
   end
 
