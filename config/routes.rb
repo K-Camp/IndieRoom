@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   root         to: "public/homes#top"
   get "about", to: "public/homes#about"
+
   namespace :public do
     resources :games
     resources :posts
@@ -12,4 +13,10 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  devise_for :admin, 
+    skip: [:registrations, :passwords], 
+    controllers: {
+      sessions: "admin/sessions"
+  }
 end
