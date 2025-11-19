@@ -30,5 +30,9 @@ class Admin::SessionsController < Devise::SessionsController
     # ユーザ側と同じページを使用
     render "shared/_login_form"
   end
+
+  def after_sign_in_path_for(resource)
+    admin_root_path
+  end
   
 end

@@ -11,8 +11,34 @@
 
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
-        <% if user_signed_in? %>
-          <!-- ログイン後 -->
+        <% if admin_user_signed_in? %>
+          <!-- 管理者ログイン後 -->
+          <li class="nav-item">
+            <%= link_to admin_root_path, class: "nav-link d-flex align-items-center" do %>
+              <i class="fas fa-users mr-1"></i> ユーザ一覧
+            <% end %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to admin_root_path, class: "nav-link d-flex align-items-center" do %>
+              <i class="fas fa-list mr-1"></i> 投稿一覧
+            <% end %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to admin_root_path, class: "nav-link d-flex align-items-center" do %>
+              <i class="fas fa-gamepad mr-1"></i> ゲーム一覧
+            <% end %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to destroy_admin_user_session_path, method: :delete, class: "nav-link d-flex align-items-center" do %>
+              <i class="fas fa-sign-out-alt mr-1"></i> ログアウト
+            <% end %>
+          </li>
+
+        <% elsif user_signed_in? %>
+          <!-- ユーザログイン後 -->
           <li class="nav-item">
             <%= link_to about_path, class: "nav-link d-flex align-items-center" do %>
               <i class="fas fa-info-circle mr-1"></i> About
