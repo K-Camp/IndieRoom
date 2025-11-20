@@ -1,0 +1,23 @@
+<div class="container mt-5 mb-5">
+  <h2 class="mb-4">ゲーム詳細</h2>
+
+  <div class="card shadow p-4">
+    <h4><%= @game.game_name %></h4>
+
+    <p class="text-muted">発売日: <%= @game.release_date.strftime("%Y/%m/%d") %></p>
+
+    <% if @game.game_image.present? %>
+      <div class="mb-3">
+        <%= image_tag @game.game_image, size: "300x300", class: "img-fluid rounded" %>
+      </div>
+    <% end %>
+    <p><%= simple_format(@game.synopsis) %></p>
+  </div>
+
+  <div class="mt-3">
+    <%= link_to edit_admin_game_path(@game), class: "col-md-1 btn btn-warning" do %>
+      <i class="fas fa-user-edit mr-2"></i> 編集
+    <% end %>
+    <%= link_to "戻る", admin_games_path, class: "col-md-1 btn btn-secondary ml-2" %>
+  </div>
+</div>

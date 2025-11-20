@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    root to: "homes#top"   # /admin にアクセスするとトップページ
+    # /admin にアクセスするとトップページへ
+    root to: "homes#top"
+    resources :games
   end
 end

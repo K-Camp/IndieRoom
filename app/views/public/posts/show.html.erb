@@ -32,13 +32,9 @@
 
             <%= link_to "戻る", request.referer || public_root_path, class: "btn btn-secondary" %>
 
-          <!-- ログインユーザが投稿主ではない場合 -->
-          <% elsif user_signed_in? %>
-            <!-- request.refererは直前に開いていたページ戻る、直前に何も開いていない場合はtopページに戻る -->
-            <%= link_to "戻る", request.referer || public_root_path, class: "btn btn-secondary" %>
-
-          <!-- ログインしていない場合 -->
+          <!-- ログインユーザが投稿主以外の場合 -->
           <% else %>
+            <!-- request.refererは直前に開いていたページ戻る、直前に何も開いていない場合はtopページに戻る -->
             <%= link_to "戻る", request.referer || public_root_path, class: "btn btn-secondary" %>
           <% end %>
         </div>

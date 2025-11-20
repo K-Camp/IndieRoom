@@ -1,0 +1,33 @@
+<div class="container mt-5 mb-5">
+  <h2 class="mb-4">ゲーム一覧</h2>
+  <%= link_to "新規ゲーム登録", new_admin_game_path, class: "btn btn-primary mb-3" %>
+
+  <table class="table table-striped table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>ID</th>
+        <th>ゲーム名</th>
+        <th>発売日</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @games.each do |game| %>
+        <tr>
+        <td><%= game.id %></td>
+        <td><%= game.game_name %></td>
+        <td><%= game.release_date %></td>
+        <td>
+          <%= link_to "詳細", admin_game_path(game), class: "col-md-2 btn btn-sm btn-info" %>
+          <%= link_to edit_admin_game_path(game), class: "col-md-2 btn btn-sm btn-warning ml-1" do %>
+            <i class="fas fa-edit mr-1"></i> 編集
+          <% end %>
+          <%= link_to admin_game_path(game), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "col-md-2 btn btn-sm btn-danger ml-1" do %>
+            <i class="fas fa-trash-alt mr-1"></i> 削除
+          <% end %>
+        </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
