@@ -11,7 +11,9 @@ Rails.application.routes.draw do
 
   namespace :public do
     resources :games
-    resources :posts
+    resources :posts do
+      resources :comments, only: [:create, :destroy]
+    end
     resources :users, only: [:show, :edit, :update] do
       member do
         patch :withdraw

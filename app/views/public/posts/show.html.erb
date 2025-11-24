@@ -1,7 +1,7 @@
 <div class="container mt-5 mb-5">
   <div class="row justify-content-center">
     <div class="col-md-8">
-      <div class="card shadow-sm">
+      <div class="card shadow-sm mb-3">
         <div class="card-header bg-primary text-white">
           <h3><%= @post.post_title %></h3>
         </div>
@@ -39,6 +39,31 @@
           <% end %>
         </div>
       </div>
+
+      <h3>コメント一覧</h3>
+
+      <% @post.comments.each do |comment| %>
+        <p>
+          <strong><%= comment.user.user_name %>:</strong>
+          <%= comment.comment_text %>
+
+          <% if comment.user == current_user %>
+            <%= link_to "削除", public_post_comment_path(@post, comment),
+                method: :delete,
+                data: { confirm: "削除しますか？" } %>
+          <% end %>
+        </p>
+      <% end %>
+
+      <hr>
+
+      <h3>コメントする</h3>
+
+      <%= form_with(scope: :comment, url: public_post_comments_path(@post), local: true) do |f| %>
+        <%= f.text_area :comment_text, row: 3, class: "form-control mb-2" %>
+        <%= f.submit "投稿する",class: "btn btn-primary" %>
+      <% end %>
+
     </div>
   </div>
 </div>
