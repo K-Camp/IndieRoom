@@ -1,6 +1,19 @@
 <div class="container mt-5 mb-5">
   <h2 class="text-center mb-4">投稿一覧</h2>
 
+  <div class="search_form pe-3 mb-3">
+    <%= search_form_for @q, url: public_posts_path, class:"row" do |f| %>
+      <div class="col-md-4">
+        <%= f.search_field :post_title_cont, class:"form-control", placeholder: "ゲーム名検索" %>
+      </div>
+      <div class="col-md-1">
+        <button class="btn btn-outline-success" type="submit">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
+    <% end %>
+  </div>
+
   <% if @posts.any? %>
     <div class="row">
       <% @posts.each do |post| %>
@@ -44,4 +57,5 @@
       まだ投稿がありません。
     </div>
   <% end %>
+  <%= paginate @posts %>
 </div>

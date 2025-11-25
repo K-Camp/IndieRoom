@@ -29,14 +29,9 @@
             <%= link_to public_post_path(@post), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-outline-danger mr-2" do %>
               <i class="fas fa-trash-alt mr-1"></i> 削除
             <% end %>
-
-            <%= link_to "戻る", request.referer || public_root_path, class: "btn btn-secondary" %>
-
-          <!-- ログインユーザが投稿主以外の場合 -->
-          <% else %>
-            <!-- request.refererは直前に開いていたページ戻る、直前に何も開いていない場合はtopページに戻る -->
-            <%= link_to "戻る", request.referer || public_root_path, class: "btn btn-secondary" %>
           <% end %>
+
+          <%= link_to "戻る", public_posts_path, class: "btn btn-secondary" %>
         </div>
       </div>
 

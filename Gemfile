@@ -56,6 +56,8 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # 追加gem
+gem 'kaminari'
+gem 'ransack'
 gem 'devise'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
