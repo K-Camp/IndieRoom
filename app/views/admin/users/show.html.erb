@@ -1,0 +1,16 @@
+<div class="container mt-5">
+  <h2>ユーザ詳細</h2>
+
+  <table class="table table-bordered mt-3">
+    <tr><th>ID</th><td><%= @user.id %></td></tr>
+    <tr><th>Name</th><td><%= @user.user_name %></td></tr>
+    <tr><th>Email</th><td><%= @user.email %></td></tr>
+    <tr><th>Status</th><td><%= @user.is_active ? "有効" : "退会" %></td></tr>
+  </table>
+
+  <%= link_to "編集", edit_admin_user_path(@user), class: "btn btn-warning" %>
+  <%= link_to "削除", admin_user_path(@user),
+        method: :delete,
+        data: { confirm: "本当に削除しますか？" },
+        class: "btn btn-danger" %>
+</div>

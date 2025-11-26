@@ -1,0 +1,32 @@
+<div class="container mt-5">
+  <h2 class="mb-4">ユーザ一覧</h2>
+
+  <table class="table table-bordered table-striped">
+    <thead class="thead-light">
+      <tr>
+        <th>ID</th>
+        <th>名前</th>
+        <th>Email</th>
+        <th>ステータス</th>
+        <th>登録日</th>
+        <th>詳細</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.user_name %></td>
+          <td><%= user.email %></td>
+          <td>
+            <%= user.is_active? ? "有効" : "退会" %>
+          </td>
+          <td><%= user.created_at.strftime("%Y/%m/%d") %></td>
+          <td>
+            <%= link_to "表示", admin_user_path(user), class: "btn btn-sm btn-primary" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

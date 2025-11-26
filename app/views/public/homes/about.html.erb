@@ -29,6 +29,10 @@
 
   <!-- レビュー一覧へ -->
   <div class="text-center mt-5">
-    <%= link_to "レビューを見に行く", public_posts_path, class: "btn btn-primary btn-lg" %>
+    <% if user_signed_in? %>
+      <%= link_to "レビューを見に行く", public_user_path(current_user), class: "btn btn-primary btn-lg" %>
+    <% else %>
+      <%= link_to "レビューを見に行く", public_posts_path, class: "btn btn-primary btn-lg" %>
+    <% end %>
   </div>
 </div>

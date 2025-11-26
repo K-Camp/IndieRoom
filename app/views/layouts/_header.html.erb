@@ -1,9 +1,14 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light-blue">
   <div class="container">
-    <%= link_to root_path, class: "navbar-brand d-flex align-items-center" do %>
-      <i class="fas fa-gamepad mr-2"></i>
-      IndieRoom
-    <% end %>
+    <% if admin_user_signed_in? %>
+        <%= link_to admin_root_path, class: "navbar-brand d-flex align-items-center py-0 m-0" do %>
+          <%= image_tag("IndieRoom_logo.png", size: "120x70", alt: "IndieRoom logo", class: "IndieRoom-logo") %>
+        <% end %>
+      <% else %>
+        <%= link_to root_path, class: "navbar-brand d-flex align-items-center py-0 m-0" do %>
+          <%= image_tag("IndieRoom_logo.png", size: "10x10", alt: "IndieRoom logo", class: "IndieRoom-logo") %>
+        <% end %>
+      <% end %>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
@@ -14,7 +19,7 @@
         <% if admin_user_signed_in? %>
           <!-- 管理者ログイン後 -->
           <li class="nav-item">
-            <%= link_to admin_root_path, class: "nav-link d-flex align-items-center" do %>
+            <%= link_to admin_users_path, class: "nav-link d-flex align-items-center" do %>
               <i class="fas fa-users mr-1"></i> ユーザ一覧
             <% end %>
           </li>

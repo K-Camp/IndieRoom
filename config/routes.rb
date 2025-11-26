@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   root         to: "public/homes#top"
   get "about", to: "public/homes#about"
 
+  # ユーザ側ルーティング
   namespace :public do
     resources :games
     resources :posts do
@@ -21,9 +22,11 @@ Rails.application.routes.draw do
     end
   end
 
+  # 管理者側ルーティング
   namespace :admin do
     # /admin にアクセスするとトップページへ
     root to: "homes#top"
     resources :games
+    resources :users, only: [:index, :show, :edit, :update, :destroy]
   end
 end
