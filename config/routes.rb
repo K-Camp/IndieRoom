@@ -27,6 +27,14 @@ Rails.application.routes.draw do
     # /admin にアクセスするとトップページへ
     root to: "homes#top"
     resources :games
-    resources :users, only: [:index, :show, :edit, :update, :destroy]
+    resources :users, only: [:index, :show, :edit, :update, :destroy] do
+      patch :status, on: :member
+    end
+    resources :posts do
+      member do
+        patch :publish
+        patch :unpublish
+      end
+    end
   end
 end

@@ -10,6 +10,7 @@
             <th scope="col">ゲーム</th>
             <th scope="col">タイトル</th>
             <th scope="col">投稿日</th>
+            <th scope="col">公開状態</th>
             <th></th>
           </tr>
         </thead>
@@ -20,7 +21,14 @@
               <td><%= post.game.game_name %></td>
               <td><%= post.post_title %></td>
               <td><%= post.created_at.strftime("%Y/%m/%d %H:%M") %></td>
-              <td><%= link_to "詳細", admin_games_path, class: "btn btn-sm btn-secondary" %></td>
+              <td>
+                <% if post.is_public %>
+                  <span class="text-success">公開</span>
+                <% else %>
+                  <span class="text-danger">非公開</span>
+                <% end %>
+              </td>
+              <td><%= link_to "詳細", admin_post_path(post), class: "btn btn-sm btn-secondary" %></td>
             </tr>
           <% end %>
         </tbody>

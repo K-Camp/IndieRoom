@@ -1,0 +1,58 @@
+<div class="container mt-5 mb-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+
+      <!-- 投稿詳細（共通部分テンプレート） -->
+      <%= render "shared/post_detail", post: @post %>
+
+      <!-- 管理者専用機能 -->
+      <div class="card shadow-sm mt-4">
+        <div class="card-header bg-dark text-white">
+          <h4>管理者メニュー</h4>
+        </div>
+
+        <div class="card-body">
+
+          <p><strong>投稿ID:</strong> <%= @post.id %></p>
+          <p>
+            <strong>投稿者:</strong>
+            <%= link_to @post.user.user_name, admin_user_path(@post.user), class: "text-primary" %>
+            （ユーザ管理ページへ）
+          </p>
+
+          <p>
+            <strong>現在の状態:</strong>
+            <% if @post.is_public %>
+              <span class="text-success">公開中</span>
+            <% else %>
+              <span class="text-danger">非公開</span>
+            <% end %>
+          </p>
+
+          <div class="mt-3">
+
+            <%# 公開 / 非公開切り替えボタン %>
+            <% if @post.is_public %>
+              <%= link_to "非公開にする",
+                  unpublish_admin_post_path(@post),
+                  method: :patch,
+                  class: "btn btn-warning me-2",
+                  data: { confirm: "この投稿を非公開にしますか？" } %>
+            <% else %>
+              <%= link_to "公開にする",
+                  publish_admin_post_path(@post),
+                  method: :patch,
+                  class: "btn btn-success me-2",
+                  data: { confirm: "この投稿を公開状態に戻しますか？" } %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="card-footer text-end">
+          <%= link_to "投稿一覧に戻る", admin_root_path, class: "btn btn-secondary" %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

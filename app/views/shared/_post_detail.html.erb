@@ -30,6 +30,27 @@
       <% end %>
     <% end %>
 
-    <%= link_to "戻る", public_posts_path, class: "btn btn-secondary" %>
+    <% unless admin_user_signed_in? %>
+      <%= link_to "戻る", public_posts_path, class: "btn btn-secondary" %>
+    <% end %>
   </div>
 </div>
+
+<h3>コメント一覧</h3>
+
+<% @post.comments.each do |comment| %>
+  <p>
+    <strong><%= comment.user.user_name %>:</strong>
+    <%= comment.comment_text %>
+
+    <% if comment.user == current_user || admin_user_signed_in? %>
+      <%= link_to "削除", public_post_comment_path(@post, comment),
+          method: :delete,
+          data: { confirm: "削除しますか？" } %>
+    <% end %>
+  </p>
+<% end %>
+
+<%= paginate @comments %>
+
+<hr>

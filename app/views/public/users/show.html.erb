@@ -1,37 +1,9 @@
 <div class="container mt-5 mb-5">
   <div class="card shadow-sm p-4">
-    <h2 class="mb-4"><i class="fas fa-user-circle mr-2"></i> マイページ</h2>
+    <h2 class="mb-4"><i class="fas fa-user-circle mr-2"></i>マイページ</h2>
 
-    <!-- ユーザプロフィール -->
-    <div class="mb-3">
-      <% if @user.profile_image.attached? %>
-        <%= image_tag @user.profile_image, size: "200x200", class: "img-thumbnail rounded-circle" %>
-      <% else %>
-        <%= image_tag "no_image.jpg", size: "200x200", class: "img-thumbnail rounded-circle" %>
-      <% end %>
-    </div>
-    <div class="mb-3">
-      <strong>ユーザー名：</strong> <%= @user.user_name %>
-    </div>
-    <div class="mb-3">
-      <strong>メールアドレス：</strong> <%= @user.email %>
-    </div>
-
-    <% if @user.introduction.present? %>
-      <div class="mb-3">
-        <strong>自己紹介</strong>
-        <p><%= @user.introduction %></p>
-      </div>
-    <% end %>
-
-    <!-- ログインユーザのマイページかどうか -->
-    <% if @user == current_user %>
-      <div class="col-3">
-        <%= link_to edit_public_user_path, class: "btn btn-outline-primary" do %>
-          <i class="fas fa-user-edit mr-2"></i> 編集する
-        <% end %>
-      </div>
-    <% end %>
+    <%# ユーザプロフィール %>
+    <%= render "shared/user_profile", user: @user %>
   </div>
 
   <h3 class="mt-5 mb-3">自分の投稿一覧</h3>

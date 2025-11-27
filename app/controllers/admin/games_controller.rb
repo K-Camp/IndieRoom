@@ -1,4 +1,5 @@
 class Admin::GamesController < ApplicationController
+  # 管理者ログインチェック
   before_action :authenticate_admin_user!
   before_action :set_game, only: [:show, :edit, :update, :destroy]
 

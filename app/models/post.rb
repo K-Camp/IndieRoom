@@ -7,6 +7,9 @@ class Post < ApplicationRecord
   validates :post_title, presence: true
   validates :content,    presence: true
 
+  # 公開状態のものだけを表示できるように
+  scope :public_posts, -> { where(is_public: true) }
+
   # Ransack で検索可能なカラムの許可リスト
   def self.ransackable_attributes(auth_object = nil)
     [

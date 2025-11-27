@@ -1,0 +1,43 @@
+<!-- ユーザプロフィール -->
+<div class="mb-3">
+  <% if @user.profile_image.attached? %>
+    <%= image_tag @user.profile_image, size: "200x200", class: "img-thumbnail rounded-circle" %>
+  <% else %>
+    <%= image_tag "no_image.jpg", size: "200x200", class: "img-thumbnail rounded-circle" %>
+  <% end %>
+</div>
+
+<div class="mb-3">
+  <strong>ユーザー名：</strong> <%= @user.user_name %>
+</div>
+<div class="mb-3">
+  <strong>メールアドレス：</strong> <%= @user.email %>
+</div>
+
+<% if @user.introduction.present? %>
+  <div class="mb-3">
+    <strong>自己紹介</strong>
+    <p><%= @user.introduction %></p>
+  </div>
+<% end %>
+
+<%# 管理者がログインしている場合のみステータス表示 %>
+<% if admin_user_signed_in? %>
+  <div class="mb-3">
+    <strong>ステータス：</strong>
+    <% if @user.is_active %>
+      <span class="text-success">有効</span>
+    <% else %>
+      <span class="text-danger">退会</span>
+    <% end %>
+  </div>
+<% end %>
+
+<!-- ログインユーザのマイページかどうか -->
+<% if @user == current_user %>
+  <div class="col-3">
+    <%= link_to edit_public_user_path, class: "btn btn-outline-primary" do %>
+      <i class="fas fa-user-edit mr-2"></i> 編集する
+    <% end %>
+  </div>
+<% end %>

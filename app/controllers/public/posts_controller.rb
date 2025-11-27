@@ -27,6 +27,12 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comments = @post.comments.
+                includes(:user).
+                order(created_at: :desc).
+                page(params[:page]).
+                per(20)
+    @comment = Comment.new
   end
 
   def edit
