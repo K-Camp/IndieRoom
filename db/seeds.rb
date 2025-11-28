@@ -20,6 +20,10 @@ user2 = User.find_or_create_by!(email: "suzuki@example.com") do |u|
   u.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/user3_image.png"), filename:"sample-user3.png")
 end
 
+# コメント作成
+Comment.find_or_create_by!(post: post1, user: user2, comment_text: "面白そうですね！")
+Comment.find_or_create_by!(post: post2, user: user1, comment_text: "参考になりました")
+
 # --- Genres ---
 genre_action = Genre.find_or_create_by!(genre_name: "アクション")
 genre_rpg = Genre.find_or_create_by!(genre_name: "RPG")
