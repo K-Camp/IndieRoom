@@ -5,12 +5,15 @@
       <!-- 投稿詳細（共通部分テンプレート） -->
       <%= render "shared/post_detail", post: @post %>
 
+      <!--
       <h3>コメントする</h3>
 
       <%= form_with(scope: :comment, url: public_post_comments_path(@post), local: true) do |f| %>
         <%= f.text_area :comment_text, row: 3, class: "form-control mb-2" %>
         <%= f.submit "投稿する",class: "btn btn-primary" %>
       <% end %>
+      -->
+
     </div>
   </div>
 </div>
