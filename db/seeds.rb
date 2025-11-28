@@ -20,10 +20,6 @@ user2 = User.find_or_create_by!(email: "suzuki@example.com") do |u|
   u.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/user3_image.png"), filename:"sample-user3.png")
 end
 
-# コメント作成
-Comment.find_or_create_by!(post: post1, user: user2, comment_text: "面白そうですね！")
-Comment.find_or_create_by!(post: post2, user: user1, comment_text: "参考になりました")
-
 # --- Genres ---
 genre_action = Genre.find_or_create_by!(genre_name: "アクション")
 genre_rpg = Genre.find_or_create_by!(genre_name: "RPG")
@@ -52,23 +48,27 @@ game3 = Game.find_or_create_by!(game_name: "レイジオブキングス") do |g|
 end
 
 # --- Posts（レビュー） ---
-Post.find_or_create_by!(user_id: user1.id, game_id: game1.id) do |p|
+post1 = Post.find_or_create_by!(user_id: user1.id, game_id: game1.id) do |p|
   p.score = 5
   p.post_title = "神ゲー確定！"
   p.content = "ストーリーと世界観が圧倒的に良い。戦闘も爽快でおすすめ。"
 end
 
-Post.find_or_create_by!(user_id: user1.id, game_id: game2.id) do |p|
+post2 = Post.find_or_create_by!(user_id: user1.id, game_id: game2.id) do |p|
   p.score = 4
   p.post_title = "グラフィック最高"
   p.content = "宇宙ステージの臨場感がすごい。難易度はやや高め。"
 end
 
-Post.find_or_create_by!(user_id: user2.id, game_id: game3.id) do |p|
+post3 = Post.find_or_create_by!(user_id: user2.id, game_id: game3.id) do |p|
   p.score = 3
   p.post_title = "普通に楽しめる"
   p.content = "アクションは良いけどボリュームが少し物足りなかった。"
 end
+
+# コメント作成
+Comment.find_or_create_by!(post: post1, user: user2, comment_text: "面白そうですね！")
+Comment.find_or_create_by!(post: post2, user: user1, comment_text: "参考になりました")
 
 # --- Adminユーザ ---
 admin = AdminUser.find_or_create_by!(email: "admin@example.com") do |u|
