@@ -68,6 +68,7 @@ end
 
 # --- Adminユーザ ---
 admin = AdminUser.find_or_create_by!(email: "admin@example.com") do |u|
+  u.admin_name = "管理ユーザ"
   u.password = "password"
   u.password_confirmation = "password"
 end
