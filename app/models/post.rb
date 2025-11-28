@@ -9,18 +9,14 @@ class Post < ApplicationRecord
 
   # 公開状態のものだけを表示できるように
   scope :public_posts, -> { where(is_public: true) }
+  
+  # Ransack が検索していい関連をここに記述
+  def self.ransackable_associations(auth_object = nil)
+    ["user"]
+  end
 
-  # Ransack で検索可能なカラムの許可リスト
+  # Ransack 検索許可カラムリスト
   def self.ransackable_attributes(auth_object = nil)
-    [
-      "id",
-      "user_id",
-      "game_id",
-      "score",
-      "post_title",
-      "content",
-      "created_at",
-      "updated_at"
-    ]
+    ["post_title", "content", "created_at", "updated_at", "score", "is_public"]
   end
 end

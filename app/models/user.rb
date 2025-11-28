@@ -14,4 +14,14 @@ class User < ApplicationRecord
   def active_for_authentication?
     super && is_active
   end
+
+  # Ransack が検索していい関連をここに記述
+  def self.ransackable_associations(auth_object = nil)
+    ["posts"]
+  end
+
+  # Ransack 検索許可カラムリスト
+  def self.ransackable_attributes(auth_object = nil)
+    ["user_name"]
+  end
 end
