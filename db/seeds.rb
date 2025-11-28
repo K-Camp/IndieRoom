@@ -66,4 +66,10 @@ Post.find_or_create_by!(user_id: user2.id, game_id: game3.id) do |p|
   p.content = "アクションは良いけどボリュームが少し物足りなかった。"
 end
 
+# --- Adminユーザ ---
+admin = AdminUser.find_or_create_by!(email: "admin@example.com") do |u|
+  u.password = "password"
+  u.password_confirmation = "password"
+end
+
 puts "Seed data created successfully!"
