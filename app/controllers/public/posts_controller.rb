@@ -5,7 +5,11 @@ class Public::PostsController < ApplicationController
 
   def index
     @q = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true).includes(:user).page(params[:page]).order("created_at desc")
+    @posts = @q.result(distinct: true)
+                .where(is_public: true)  # ここで公開投稿だけに絞る
+                .includes(:user)
+                .order(created_at: :desc)
+                .page(params[:page])
   end
 
   def new
