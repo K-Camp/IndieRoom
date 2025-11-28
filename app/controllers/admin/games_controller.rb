@@ -19,6 +19,7 @@ class Admin::GamesController < ApplicationController
     if @game.save
       redirect_to admin_game_path(@game), notice: "ゲームを登録しました。"
     else
+      Rails.logger.debug @game.errors.full_messages
       flash.now[:alert] = "ゲームの登録に失敗しました。"
       render :new
     end
@@ -52,6 +53,6 @@ class Admin::GamesController < ApplicationController
   end
 
   def game_params
-    params.require(:game).permit(:game_name, :synopsis, :release_date)
+    params.require(:game).permit(:genre_id, :game_name, :synopsis, :release_date, :game_image)
   end
 end
