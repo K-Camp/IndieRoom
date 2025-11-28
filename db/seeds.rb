@@ -52,18 +52,21 @@ post1 = Post.find_or_create_by!(user_id: user1.id, game_id: game1.id) do |p|
   p.score = 5
   p.post_title = "神ゲー確定！"
   p.content = "ストーリーと世界観が圧倒的に良い。戦闘も爽快でおすすめ。"
+  p.is_public = true
 end
 
 post2 = Post.find_or_create_by!(user_id: user1.id, game_id: game2.id) do |p|
   p.score = 4
   p.post_title = "グラフィック最高"
   p.content = "宇宙ステージの臨場感がすごい。難易度はやや高め。"
+  p.is_public = true
 end
 
 post3 = Post.find_or_create_by!(user_id: user2.id, game_id: game3.id) do |p|
   p.score = 3
   p.post_title = "普通に楽しめる"
   p.content = "アクションは良いけどボリュームが少し物足りなかった。"
+  p.is_public = true
 end
 
 # コメント作成
